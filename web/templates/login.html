@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="static/css/styles.css" rel="stylesheet" />
+  </head>
+  <body class="bg-black flex justify-center items-center h-screen">
+  <div class="flex flex-col">
+      <div class="self-center">
+        <h1 class="select-none cursor-pointer text-xl font-semibold text-white m-4">PubCount</h1>
+      </div>
+    <div class="flex flex-col justify-center items-center">
+        <form class="text-white flex flex-col justify-center items-center"
+          action="/login" method="post">
+          {{ if .LoginError }}
+          <div><h2 class="select-none cursor-pointer text-red-300 my-2"> {{ .LoginError }} </h2> </div>
+          {{ end }}
+          <div> <input name="username" value="{{ .Username }}" placeholder="Username" class="p-2 m-4 rounded bg-black border-solid border-2 border-blue-400" Testtype="text"></input></div>
+          <div> <input name="password" placeholder="Password" class="p-2 m-4 rounded bg-black border-solid border-2 border-blue-400" type="password"></input></div>
+          <div> <button class="rounded bg-black border-solid border-2 border-blue-400 px-4 py-2 m-4">Login</button> </div>
+          <div><a href="/newuser"><h2 class="select-none cursor-pointer text-red-300 my-2"> New User? </h2></a> </div>
+        </form>
+    </div>
+    </div>
+  </body>
+</html>

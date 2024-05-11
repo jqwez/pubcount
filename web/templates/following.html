@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="static/css/styles.css" rel="stylesheet" />
+  </head>
+  <body class="bg-black">
+  <div class="flex flex-col">
+      <div class="self-center">
+        <h1 class="select-none cursor-pointer text-xl font-semibold text-white">PubCount</h1>
+      </div>
+    <div>
+      <p class="text-white"></p>
+    </div>
+    <div class="pt-1">
+      <table class="w-full text-white border-separate border-spacing-2">
+        <thead class="text-left">
+          <tr>
+            <th class="select-none cursor-pointer px-4 py-2 text-center">Name</th>
+            <th class="select-none cursor-pointer px-4 py-2 text-center">Goals</th>
+            <th class="select-none cursor-pointer px-4 py-2 text-center">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+            {{ range .Users }}
+          <tr>
+              <td class="select-none cursor-pointer py-2 hover:bg-yellow-800 text-center">{{ .User }}</td>
+              <td class="select-none cursor-pointer flex-col py-2 text-center">{{ range .Goals }} <div class="hover:bg-yellow-800">{{ .Title }}</div> {{ end }}</td>
+              <td class="select-none cursor-pointer flex-col py-2 text-center hover:bg-yellow-800">{{ .Status }} </td>
+          </tr>
+            {{ end }}
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </body>
+</html>
