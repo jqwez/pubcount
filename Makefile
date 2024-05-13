@@ -3,6 +3,7 @@ MAIN=main.go
 TARGET=pubcount
 TWIND=third_party/twind
 TWIND_OUT=./web/static/css/styles.css
+TWIND_CONFIG=./web/tailwind.config.js
 
 all: build tests
 
@@ -36,7 +37,7 @@ gobin:
 tailwind:
 	@echo "✒️ ✒️ ✒️  Compiling TailwindCSS ✒️ ✒️ ✒️"
 	@echo "....."
-	@ $(TWIND) -o $(TWIND_OUT) --minify
+	@ $(TWIND) -o $(TWIND_OUT) -c $(TWIND_CONFIG) --minify
 
 .PHONY: tailwind
 
