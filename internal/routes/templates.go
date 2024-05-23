@@ -7,16 +7,19 @@ import (
 )
 
 func HandleTemplate(w http.ResponseWriter, templateName string, data interface{}) error {
-	fullTemplate := fmt.Sprintf("web/templates/%s", templateName)
-	t, err := template.ParseFiles(fullTemplate)
+	t, err := template.ParseFiles(withLoc("header.tmpl"), withLoc(templateName), withLoc("footer.tmpl"))
 	if err != nil {
 		http.Error(w, "Templating Error", http.StatusInternalServerError)
 		return err
 	}
-	err = t.Execute(w, data)
+	err = t.ExecuteTemplate(w, templateName, data)
 	if err != nil {
 		http.Error(w, "Templating Error", http.StatusInternalServerError)
 		return err
 	}
 	return nil
+}
+
+func withLoc(templateName string) string {
+	return fmt.Sprintf("web/templates/%s", templateName)
 }

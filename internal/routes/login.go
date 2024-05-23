@@ -40,7 +40,7 @@ func HandlePostLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginTemplate(w http.ResponseWriter, data HandleLoginData) {
-	err := HandleTemplate(w, "login.html", data)
+	err := HandleTemplate(w, "login.tmpl", data)
 	if err != nil {
 		log.Println(err)
 	}

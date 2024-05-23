@@ -57,7 +57,7 @@ func HandleFollowing(w http.ResponseWriter, r *http.Request) {
 	_ = r.Body
 
 	data := GetHandleViewAccountData()
-	err := HandleTemplate(w, "following.html", data)
+	err := HandleTemplate(w, "following.tmpl", data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
