@@ -18,7 +18,7 @@ func NewRoutes(m *http.ServeMux) *Routes {
 
 func (rs *Routes) registerRoutes() {
 	rs.mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
-	rs.mux.HandleFunc("/", HandleLogin)
+	rs.mux.HandleFunc("/", HandleIndex)
 	rs.mux.HandleFunc("/following", HandleFollowing)
 	rs.mux.HandleFunc("/login", HandleLogin)
 	rs.mux.HandleFunc("/sample", func(w http.ResponseWriter, r *http.Request) {

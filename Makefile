@@ -4,6 +4,7 @@ TARGET=pubcount
 TWIND=third_party/twind
 TWIND_OUT=./web/static/css/styles.css
 TWIND_CONFIG=./web/tailwind.config.js
+TEMPL=third_party/templ
 
 all: build tests
 
@@ -15,7 +16,7 @@ dev: build
 run:
 	@./bin/pubcount
 
-build: header tailwind gobin
+build: header tailwind templ gobin
 	@echo " 🎉 🎉 🎉  Build Complete 🎉 🎉 🎉"
 
 .PHONY: build
@@ -40,6 +41,13 @@ tailwind:
 	@ $(TWIND) -o $(TWIND_OUT) -c $(TWIND_CONFIG) --minify
 
 .PHONY: tailwind
+
+templ:
+	@echo " Generating Templ .go modules "
+	@echo "....."
+	@$(TEMPL) generate
+
+.PHONY: templ
 
 tests:
 	@echo "Running go tests......"

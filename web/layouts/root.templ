@@ -1,0 +1,19 @@
+package layouts
+
+templ RootLayout() {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>PubCount</title>
+			<link rel="icon" type="image/x-icon" href="/static/images/favicon.png"/>
+			<link rel="stylesheet" href="static/css/styles.css"/>
+		</head>
+		<body class="flex content-center bg-slate-950 flex-col text-white">
+			<header class=""></header>
+			<main class="mt-20">
+				{ children... }
+			</main>
+		</body>
+		<footer></footer>
+	</html>
+}
