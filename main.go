@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/jqwez/pubcount/internal"
@@ -10,10 +11,7 @@ import (
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal(err)
-	}
+	LoadEnv()
 	port := ":3030"
 	server := internal.NewServer()
 	mainStore := store.NewMongoStore().SetDatabase("pubcount")
@@ -26,4 +24,13 @@ func main() {
 
 	log.Println("Running on port", port)
 	http.ListenAndServe(port, server.Mux())
+}
+
+func LoadEnv() {
+	if os.Getenv("MONGODB_URI") == "" {
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 }

@@ -1,9 +1,11 @@
 FROM golang:latest
 
-RUN apt-get update && apt-get install -y make git
+RUN apt-get update && apt-get install -y make
 
 WORKDIR /app
 
-RUN git clone https://github.com/jqwez/pubcount && cd pubcount
+COPY . .
 
-CMD ["cd", "pubcount", "&&", "make", "build-run"]
+RUN chmod 777 ./third_party/*
+
+CMD ["make", "build-run"]
