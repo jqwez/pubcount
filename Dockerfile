@@ -1,25 +1,12 @@
-FROM node:latest AS nodebuild
-
-WORKDIR /tailwind
-
-COPY web web
-
-RUN npm install tailwindcss
-
-RUN cd web && npx tailwindcss
-
-
-
 FROM golang:latest
 
-RUN apt-get update && apt-get install -y make
+RUN apt-get update && apt-get install -y make curl
 
 WORKDIR /app
 
 COPY . .
-COPY --from=nodebuild /tailwind/web/static /app/web/static
 
-RUN make templ
-RUN go build -o pubcount main.go
+RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.4/tailwindcss-linux-arm64
+RUN chmod +x tailwind-linux-arm64 && mv tailwind-linux-arm64 third_party/twind
 
-CMD ["./pubcount"]
+CMD ["make", "build-run"]
