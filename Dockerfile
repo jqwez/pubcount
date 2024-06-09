@@ -6,4 +6,4 @@ WORKDIR /app
 
 RUN git clone https://github.com/jqwez/pubcount && cd pubcount
 
-CMD ["make", "build-run"]
+CMD ["cd", "pubcount", "&&", "make", "build-run"]
